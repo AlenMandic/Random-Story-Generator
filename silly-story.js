@@ -31,12 +31,15 @@ function result() {
   var xItem = randomValueFromArray(insertx);
   var yItem = randomValueFromArray(inserty);
   var zItem = randomValueFromArray(insertz);
-  newStory = newStory.replace(/:insertx:/g, xItem);
+  newStory = newStory.replace(/:insertx:/g, xItem); //Here we .replace all instances (g) of :insertx: in our array,and replace with a randomly chosen array string.
   newStory = newStory.replace(/:inserty:/g, yItem);
   newStory = newStory.replace(/:insertz:/g, zItem);
   if (customName.value !== "") {
-    newStory = newStory.replace(/Bob/g, name);
+    newStory = newStory.replace(/Bob/g, name); //Here we are saying if the input field for a custom name ISNT empty,change the string Bob to whatever name the user inputs.
   }
+
+  //Below is the condition for what happens if the UK radio button is '.checked'.
+  //We create 2 new variables that will change the temperature and weight parts of our story,and calculate approximately to the uk standard.
 
   if (document.getElementById("uk").checked) {
     //For UK standards,we do 2 simple math calculations for pounds to stone,and F to C.Then we reference newStory with them replacing the US standard.
@@ -44,9 +47,18 @@ function result() {
     var weight = Math.round(300 / 14) + " stone";
     var temperature = Math.round((94 - 32) * (5 / 9)) + " centigrade;";
 
-    newStory = newStory.replace("94 fahrenheit", temperature);
+    newStory = newStory.replace("94 fahrenheit", temperature); //Here we create a new instance of the story once the button is clicked,this time with UK standard instead of US.
     newStory = newStory.replace("300 pounds", weight);
   }
-  story.textContent = newStory;
+  story.textContent = newStory; //Our main story paragraph should always equal newStory(which is equal to myStory but with all the random changes made!).
   story.style.visibility = "visible";
 }
+
+//IMPORTANT NOTES BELOW
+
+/* Most important things i learned from this project were how to pick out certain elements of an array and change them,practical use
+of if/else conditionals,and how to create a new instance of our story and have it randomly change everytime we click the button.
+We achieve this by creating a variable equal to our main text paragraph,and we add all the random changes to that new variable,so that everytime
+the button is clicked,a new iteration of the main story paragraph is created,but we certain substitutes(xItem, zItem, etc).
+And ofcourse we place most of the above inside the function that is run when the button is clicked.
+*/
